@@ -9,7 +9,7 @@ import theano
 # Custom Modules
 import Scripts
 import DeepConv
-
+from sklearn.externals import joblib
 
 if __name__ == '__main__':
     args = Scripts.get_args()
@@ -22,4 +22,4 @@ if __name__ == '__main__':
     y_pred = classifier.predict(x_test)
     classifier.score_report(y_test=y_test, y_pred=y_pred)
     logger.info('Classifier Scoring: {0}'.format(classifier.score(x_test, y_test)))
-    Scripts.confusion_matrix(y_test, y_pred)
+    joblib.dumps(classifier, 'digits.pkl')
